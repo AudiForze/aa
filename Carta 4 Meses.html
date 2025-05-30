@@ -2,71 +2,143 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <title>Cartas para Mi Amor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Letter to the Most Beautiful and Tender Woman in the World</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
     body {
-      margin: 0;
-      padding: 0;
       background-color: #f7f1e1;
       font-family: 'Georgia', serif;
       color: #4b3f2f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .carta {
-      background-color: #fffaf0;
+      margin: 0;
       padding: 40px;
-      max-width: 700px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 1px solid #e6dcc7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h1 {
       font-family: 'Dancing Script', cursive;
       font-size: 3em;
-      text-align: center;
       color: #a67c52;
+      margin-bottom: 40px;
     }
 
-    p {
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .card {
+      background-color: #fffaf0;
+      border: 1px solid #e6dcc7;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      text-decoration: none;
+      color: #4b3f2f;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card.locked {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .card img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .card span {
+      display: block;
       font-size: 1.2em;
-      line-height: 1.7;
-      margin: 20px 0;
-      text-align: justify;
     }
 
-    .firma {
-      text-align: right;
-      margin-top: 40px;
-      font-family: 'Dancing Script', cursive;
-      font-size: 1.8em;
+    .especial {
+      background-color: #fff5ec;
+      border: 2px dashed #d9b99b;
+      position: relative;
+      animation: brillo 2s infinite alternate;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+    .especial span {
+      font-weight: bold;
+      font-size: 1.3em;
+      color: #c2745b;
+    }
+
+    @keyframes brillo {
+      0% { box-shadow: 0 0 10px rgba(255, 192, 203, 0.2); }
+      100% { box-shadow: 0 0 20px rgba(255, 192, 203, 0.6); }
+    }
   </style>
 </head>
 <body>
-  <div class="carta">
-    <h1>Carta 3 Mes</h1>
-    <p>
-      Mi princesa,<br><br>
-      Esta es la tercera de mil y un millón de cartas que tengo para ti, y aun con un millón me faltarían más para poder decirte lo fea e insoportable que eres... pero, sobre todo, para terminar de decirte lo mucho que te amo.<br><br>
-      Este mes ha tenido sus altas y bajas, pero seguimos fortaleciendo este amor y este proyecto al que Dios nos invitó.
-    </p>
-    <p>
-        Mi niña, gracias por ser tan insoportable y por molestar tanto. Esa felicidad tuya y esas ganas de molestar tanto, que siempre tienes me alegran el día. Aunque a veces seas un poco impulsiva, te amo y te adoro con todo mi corazón, y no sé si algún día llegues a entender cuánto te amo. 
-        Gracias por tu risa, por tus enojos dramáticos, por tus silencios, por tu forma de mirarme tan tierna aunque no lo admitas. Gracias por caminar conmigo, por hacer mis días mas llevaderos y darle el drama y la felicidad a mi vida.
-        <p>Ni todas las palabras del mundo alcanzarían para describir cuánto te amo.</p> 
-    </p>
-    <div class="firma">
-        Te amo con todo mi ser, <br>
-        Att: Tu Niño
+
+  <h1>Cartas para Mi Amor</h1>
+
+  <div class="dashboard">
+    <a class="card" href="3meses.html">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Carpeta">
+      <span>3 Meses</span>
+    </a>
+
+    <a class="card" href="4meses.html">
+      <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png" alt="Carpeta">
+      <span>4 Meses</span>
+    </a>
+
+    <div class="card locked">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Candado">
+      <span>5 Meses</span>
+    </div>
+
+    <div class="card locked">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Candado">
+      <span>6 Meses</span>
+    </div>
+
+    <div class="card locked">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Candado">
+      <span>7 Meses</span>
+    </div>
+
+    <div class="card locked">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Candado">
+      <span>8 Meses</span>
+    </div>
+
+    <div class="card locked">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Candado">
+      <span>9 Meses</span>
+    </div>
+
+    <div class="card locked">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Candado">
+      <span>10 Meses</span>
+    </div>
+
+    <div class="card locked">
+      <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Candado">
+      <span>11 Meses</span>
+    </div>
+
+    <div class="card locked especial">
+      <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Corazón">
+      <span>1 Año ✨</span>
     </div>
   </div>
+
 </body>
 </html>
