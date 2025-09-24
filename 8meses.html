@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carta 8 Meses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Georgia:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#fffaf0;--bg:#f7f1e1;--text:#4b3f2f;--accent:#a67c52}
+    *{box-sizing:border-box}
+    body{margin:0;padding:40px;background:var(--bg);font-family:Georgia,serif;color:var(--text);display:flex;align-items:center;justify-content:center;min-height:100vh}
+
+    .contenedor{max-width:900px;width:100%;padding:30px;border-radius:18px;background:rgba(255,255,255,0.2);box-shadow:0 12px 40px rgba(0,0,0,0.08);border:1px solid #e6dcc7}
+
+    h1{font-family:'Dancing Script',cursive;font-size:2.8rem;text-align:center;color:#8b4513;margin-bottom:20px;text-shadow:1px 1px 2px rgba(0,0,0,0.2)}
+
+    .intro{font-size:1.1rem;line-height:1.7;margin-bottom:22px;text-align:justify;color:#4a3a2a;background:linear-gradient(90deg,rgba(212,175,55,0.15),transparent);border-left:4px solid #d4af37;padding:15px;border-radius:0 12px 12px 0;}
+
+    .fullscreen-letter{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;z-index:9999}
+    .fullscreen-letter.active{opacity:1;pointer-events:auto}
+    .fullscreen-letter .content{background:linear-gradient(135deg,#fffef7 0%,#f8f6f0 100%);border-radius:16px;max-width:850px;width:90%;max-height:90%;overflow-y:auto;padding:30px;border:3px solid #d4af37;box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+    .fullscreen-letter p{margin:0 0 16px;font-size:1.1rem;line-height:1.7;text-align:justify;color:#333}
+    .fullscreen-letter .firma{margin-top:20px;text-align:right;font-family:'Dancing Script',cursive;font-size:1.6rem;color:#b8860b;text-shadow:1px 1px 2px rgba(0,0,0,0.1)}
+    .close-btn{position:absolute;top:20px;right:30px;background:#d4af37;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,0.3)}
+
+    .wrap-envelope{display:flex;justify-content:center;margin-top:15px}
+    .envelope{width:320px;max-width:80%;height:220px;position:relative;cursor:pointer}
+    .envelope .back{position:absolute;inset:0;background:linear-gradient(180deg,#f7efe2,#fffaf0);border-radius:6px;border:1px solid #e6dac3;box-shadow:0 8px 18px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:#8b4513;font-weight:bold}
+
+    .hint{font-size:.9rem;color:#654321;text-align:center;margin-top:14px;animation:bounce 2s infinite}
+    @keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}60%{transform:translateY(-4px)}}
+
+    @media(max-width:520px){h1{font-size:2.2rem}.fullscreen-letter .content{padding:18px}}
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Carta — 8 meses</h1>
+
+    <div class="intro">
+      Amor es una palabra compleja de expresar pero aun más de sentir; amar representa querer aun tras cada problema, perdonar y cuidar lo que en un día decidimos unir. Yo sé que suelo decir que te amo aunque es más que palabras: si te fijas en cada detalle, esos mismos detalles dicen lo mucho que te amo. Eres une chichi muy dramática y entre tus dramas no sueles pensar lo que haces, pero eso no quita que eres el sol y la luna que ilumina mis días.
+      <br><br>
+      Pero a esta carta le quiero dar un giro diferente y comenzar de nuevo:
+    </div>
+
+    <div class="wrap-envelope">
+      <div class="envelope" id="envelope" title="Toca para abrir la carta">
+        <div class="back">💌 Abrir Carta</div>
+      </div>
+    </div>
+
+    <div class="hint">Toca o haz clic en el sobre para leer la carta.</div>
+  </div>
+
+  <div class="fullscreen-letter" id="fullscreenLetter">
+    <button class="close-btn" id="closeBtn">✕</button>
+    <div class="content">
+      <p><strong>Hola chichi,</strong> en esta carta quiero hablar, conectar con tu niña interior, esa niña berrinchuda que se molesta cuando la llamo jeilene, que me pelea cuando no le doy amor o me duermo sin darle las buenas noches y me abraza con mucho amor que me muerde y hace chupetones, que me da besitos de vez en cuando. A esa niña le doy amor, le doy su comida en avioncitos cargados de comida y amor que piden permiso para aterrizar y alimentar a mi princesa.</p>
+
+      <p>Quiero decirle a esa chichi de chitos preciosos que tanto, pero tanto, la amo y que solo ella, cuando se apodera de ese cuerpo de esa tal Jeilene, sabe cuando la amo. Esa niña que me encanta verla sonreír y comportarse como una bebé, que se siente en confianza y que su mayor temor es que me vaya y la deje solita. Quiero expresarte que quiero compartir cada minuto de mi vida contigo, darte mucho amor, comprenderte cuando tengas dudas, alumbrarte cuando te sientas en oscuridad, arroparte cuando tengas frío, consolarte cuando te sientas triste, hacerte reír para que estés feliz y amarte en todo momento.</p>
+
+      <p>Te amo un montón, mi niña preciosa recuerda que eres una reina y tu reino es mi corazón que en cada latido expresa que te amo, reina de mis pulmones que en cada suspiro mencionan tu nombre. Solo te pido que nunca olvides que te amo mucho y, sobre todo, recuerda que nunca dejaré de hacerlo, sin importar tus dramas, sin importar los problemas y sin importar los obstáculos. Sé que no me equivoqué al elegirte y te seguiré eligiendo toda la vida.</p>
+
+      <div class="firma">Con todo mi amor,<br>Geremy Gomez</div>
+    </div>
+  </div>
+
+  <script>
+    const env = document.getElementById('envelope');
+    const modal = document.getElementById('fullscreenLetter');
+    const closeBtn = document.getElementById('closeBtn');
+
+    env.addEventListener('click', () => {
+      modal.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
