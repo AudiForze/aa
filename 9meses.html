@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta de Amor</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f7f1e1;
+      font-family: 'Georgia', serif;
+      color: #4b3f2f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .carta {
+      background-color: #fffaf0;
+      padding: 40px;
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid #e6dcc7;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      text-align: center;
+      color: #a67c52;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.7;
+      margin: 20px 0;
+      text-align: justify;
+    }
+
+    .boton-terminar {
+      display: block;
+      margin: 40px auto 0;
+      padding: 15px 40px;
+      background-color: #ffb3d9;
+      color: #4b3f2f;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.3em;
+      font-family: 'Dancing Script', cursive;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 179, 217, 0.4);
+    }
+
+    .boton-terminar:hover {
+      background-color: #ff99cc;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(255, 179, 217, 0.6);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0);
+      z-index: 1000;
+      transition: background-color 0.8s ease;
+    }
+
+    .overlay.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+
+    .modal-carrusel {
+      background-color: #fffaf0;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease 0.3s;
+    }
+
+    .overlay.active .modal-carrusel {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .carrusel-container {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 15px;
+      background-color: #f7f1e1;
+    }
+
+    .carrusel-img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .carrusel-img.active {
+      opacity: 1;
+    }
+
+    .carrusel-video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .carrusel-video.active {
+      opacity: 1;
+    }
+
+    .carrusel-video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .cerrar-modal {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 30px;
+      background-color: #ffb3d9;
+      color: #4b3f2f;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.1em;
+      font-family: 'Dancing Script', cursive;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cerrar-modal:hover {
+      background-color: #ff99cc;
+    }
+
+    .flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .flash.active {
+      opacity: 1;
+    }
+
+    .mensaje-foto {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5em;
+      color: #4b3f2f;
+      z-index: 2001;
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+      padding: 40px 50px;
+      background-color: #fffaf0;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      border: 3px solid #4b3f2f;
+      transition: all 0.5s ease;
+    }
+
+    .mensaje-foto.active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  </style>
+</head>
+<body>
+  <div class="carta">
+    <h1>Chichitos preciosos</h1>
+
+    <p>
+      Me siento muy agradecido de tener una mujer tan maravillosa como tu, de tenerte al lado y poder mirarte y decirte que te amo o quizás no decirlo porque aveces también me puede dar penita pero siempre lo pienso. 
+    </p>
+
+    <p>
+      Mi niña preciosa y enojona, quiero expresarte lo tremendamente enamorado que estoy, y lo feliz y agradecido que hace sentir el saber que al recordar todos los momentos malos, todavía estamos juntos. Me haces ser el hombre mas feliz del mundo aunque aveces tienes tus pequeñititito dramotes yo estoy feliz de tenerte y quiero y se que puedo amarte para toda la vida sin que falte día y en cielo estoy seguro que serás lo primero que le preguntare a Dios.
+    </p>
+
+    <p>
+      Se que son pocos meses que llevamos en comparación a los años que duraremos pero ya para mi son suficientes para estar seguro de que quiero vivir el resto de mi vida amándote, compartiendo cada día y cada noche contigo, que quiero llegar a casa y verte a ti jugando con nuestro hijos y que quiero que sea contigo con quien pueda subir al altar, casarme y tener una familia. 
+    </p>
+
+    <p>
+      Te amo de mil formas diferentes y te he amado en todo y cada uno de los momentos en los que hemos estados juntos. Te has convertido en algo que creí imposible de encontrar, te has convertido en un hogar, en ti encontré un lugar seguro, un casa, un hogar mas allá del internet y de los códigos, en un hogar en el que puedo ser yo, puede ser el niño que se me prohibió ser y puedo ser libre sin miedo a ser juzgado o condicionado.
+    </p>
+
+    <p>
+      Se siente muy bonito amarte tanto, es un sentimiento como raro pero más no pasajero, que se repite todos los días y cada vez es más intenso porque cada vez te amo más
+    </p>
+
+    <button class="boton-terminar" onclick="mostrarCarrusel()">He terminado de leer</button>
+
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal-carrusel">
+      <div class="carrusel-container">
+        <img src="https://media.discordapp.net/attachments/817433018280443955/1431378297211850973/IMG-20250319-WA0287.jpg?ex=68fd326b&is=68fbe0eb&hm=6c8ac1af407b7ad620e17770b75ef45d5520221308e1ba7f71960b06cd28a459&=&format=webp&width=698&height=930" class="carrusel-img active" alt="Foto 1">
+        <img src="https://media.discordapp.net/attachments/817433018280443955/1431379341572440146/Screenshot_20251024_162800.jpg?ex=68fd3364&is=68fbe1e4&hm=a3014d39a56bd432761668821e0bd7ccc45fb66b8f23b99adf01540ead03794c&=&format=webp&width=476&height=800" class="carrusel-img" alt="Foto 2">
+        <img src="https://media.discordapp.net/attachments/817433018280443955/1431379342004453386/Screenshot_20251024-162827_Gallery.jpg?ex=68fd3364&is=68fbe1e4&hm=19201992a2eb645c42b68246d5cd03deade41aa27747cfc19884f2df0d23d56b&=&format=webp&width=495&height=800" class="carrusel-img" alt="Foto 3">
+        <img src="https://media.discordapp.net/attachments/817433018280443955/1431379630249476167/IMG_20250914_141445_226.webp?ex=68fd33a9&is=68fbe229&hm=6a2af03d4e7b8f257ba4478a6206d607b9a5c954055976ef5b5caab25820628d&=&format=webp&width=523&height=929" class="carrusel-img" alt="Foto 4">
+        <img src="https://media.discordapp.net/attachments/817433018280443955/1431380259864842240/Screenshot_20250915-082735_WhatsApp.jpg?ex=68fd343f&is=68fbe2bf&hm=e165e3576a987a41e14a6c62d38998269f29f3cfd8936b170a44b3811bd3f78f&=&format=webp&width=440&height=929" class="carrusel-img" alt="Foto 5">
+        <img src="https://media.discordapp.net/attachments/817433018280443955/1431380830403428514/8eb8202e-13e9-441e-96c5-7970d7bbba46.png?ex=68fd34c7&is=68fbe347&hm=61c8c1ae97cad3d99dcd771972d53cbda165b43ec8d666fe3eced6586e7639f0&=&format=webp&quality=lossless&width=574&height=930" class="carrusel-img" alt="Foto 6">
+        
+        <div class="carrusel-video">
+          <iframe src="https://streamable.com/e/239bzs?autoplay=1&muted=1" allowfullscreen allow="autoplay"></iframe>
+        </div>
+        
+        <div class="carrusel-video">
+          <iframe src="https://streamable.com/e/42iqcl?autoplay=1&muted=1" allowfullscreen allow="autoplay"></iframe>
+        </div>
+      </div>
+      <button class="cerrar-modal" onclick="cerrarCarrusel()">Espera 5s y despues de las fotos cierra</button>
+    </div>
+  </div>
+
+  <div class="flash" id="flash"></div>
+  <div class="mensaje-foto" id="mensajeFoto">Gracias por esa sonrisa ❤️</div>
+
+  <script>
+    let indiceActual = 0;
+    let intervalo;
+    const totalElementos = 8;
+
+    function mostrarCarrusel() {
+      const overlay = document.getElementById('overlay');
+      overlay.classList.add('active');
+      iniciarCarrusel();
+    }
+
+    function cerrarCarrusel() {
+      const flash = document.getElementById('flash');
+      const mensaje = document.getElementById('mensajeFoto');
+      const overlay = document.getElementById('overlay');
+      
+      // Flash de cámara
+      flash.classList.add('active');
+      
+      setTimeout(() => {
+        flash.classList.remove('active');
+        mensaje.classList.add('active');
+      }, 150);
+      
+      setTimeout(() => {
+        mensaje.classList.remove('active');
+      }, 2500);
+      
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        detenerCarrusel();
+        indiceActual = 0;
+        actualizarElementos();
+      }, 3000);
+    }
+
+    function iniciarCarrusel() {
+      intervalo = setInterval(() => {
+        indiceActual = (indiceActual + 1) % totalElementos;
+        actualizarElementos();
+      }, 4000);
+    }
+
+    function detenerCarrusel() {
+      clearInterval(intervalo);
+    }
+
+    function actualizarElementos() {
+      const imagenes = document.querySelectorAll('.carrusel-img');
+      const videos = document.querySelectorAll('.carrusel-video');
+      
+      imagenes.forEach((img, index) => {
+        img.classList.toggle('active', index === indiceActual);
+      });
+      
+      videos.forEach((video, index) => {
+        video.classList.toggle('active', (index + 6) === indiceActual);
+      });
+    }
+  </script>
+</body>
+</html>
