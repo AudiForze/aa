@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta 4 Meses</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f7f1e1;
+      font-family: 'Georgia', serif;
+      color: #4b3f2f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .carta, .login-container {
+      background-color: #fffaf0;
+      padding: 40px;
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid #e6dcc7;
+    }
+
+    .login-container {
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3em;
+      text-align: center;
+      color: #a67c52;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2em;
+      color: #a67c52;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.7;
+      margin: 20px 0;
+      text-align: justify;
+    }
+
+    .firma {
+      text-align: right;
+      margin-top: 40px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8em;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1em;
+      border: 2px solid #e6dcc7;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background-color: #fffaf0;
+      color: #4b3f2f;
+      font-family: 'Georgia', serif;
+      box-sizing: border-box;
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: #a67c52;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1em;
+      background-color: #a67c52;
+      color: #fffaf0;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #8d6844;
+    }
+
+    .btn:disabled {
+      background-color: #c4b5a0;
+      cursor: not-allowed;
+    }
+
+    .error-message {
+      color: #d9534f;
+      margin-top: 15px;
+      font-size: 1em;
+    }
+
+    .attempts-left {
+      color: #a67c52;
+      margin-top: 10px;
+      font-size: 0.95em;
+    }
+
+    .blocked-message {
+      color: #d9534f;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginContainer" class="login-container">
+    <h2>Acceso a la Carta</h2>
+    <p style="text-align: center; font-size: 1em;">Ingresa la contraseña para ver tu carta pollito</p>
+    <input 
+      type="password" 
+      id="passwordInput" 
+      class="password-input" 
+      placeholder="Contraseña"
+      maxlength="50"
+    />
+    <button id="submitBtn" class="btn" onclick="verificarPassword()">Entrar</button>
+    <p id="errorMessage" class="error-message hidden"></p>
+    <p id="attemptsLeft" class="attempts-left"></p>
+  </div>
+
+  <div id="cartaContainer" class="carta hidden">
+    <h1>Otro mes de nuestro bebe</h1>
+
+    <p>
+      Otro hermoso mes más compartiendo con una niña tremendamente preciosa que llegó a mi vida y se ha convertido en mi prioridad, mi princesa hermosa que amo con todo mi ser y que ha hecho que hasta su olor sea algo por lo cual volverme loco. Que extrañarte sea motivo de mi desánimo y mi tristeza y que amarte sea motivo de mi felicidad.
+    </p>
+
+    <p>
+      Podría durar años escribiéndote cartas y demostrándote toooodo el amor que tengo y siento por ti, pero aun así no podría expresar todo lo que te amo, ya que es algo tan inmenso que no tiene número para expresarlo. Quiero decirte en esta carta que has sido lo mejor que me ha pasado en esta vida y estoy enormemente agradecido por tenerte cada día en mi vida. Gracias por cuidar de mí y amarme en todo momento, por comprenderme y aceptar mi forma tan intensa de amar.
+    </p>
+
+    <p>
+      Espero poco a poco irme convirtiendo en ese hombre perfecto para ti y poder entenderte un poco más cada día para adaptar todo el amor que tengo a la forma en que más lo necesites. Mi corazón se ha convertido en un baúl que lleva tu nombre y del cual solo tú tienes la llave y solo tú conoces su contenido, un corazón que solo responde a tu nombre y que solo se acelerará al verte, escucharte, sentirte o solamente al pensarte.
+    </p>
+
+    <p>
+      Ahora no solo eres mi princesa hermosa, mi bebé, mi niña preciosa, mi chichi, mi amor, mi vida y un sinfín de nombres que tengo, que no son solamente otra forma más de decirte que te amo, sino que ahora también eres mi pollito. Un sobrenombre que expresa lo delicado que es el amor que siento por ti y la delicadeza de su dulzura que abraza cada palabra y cada acción que manifiesta.
+    </p>
+
+    <div class="firma">
+      Con todo mi amor,<br>
+      tu ñoñito
+    </div>
+  </div>
+
+  <script>
+    const PASSWORD_CORRECTA = "Factura"; 
+    const MAX_INTENTOS = 5;
+    const STORAGE_KEY = "intentos_fallidos";
+    const BLOCKED_KEY = "cuenta_bloqueada";
+
+    window.onload = function() {
+      if (window.storage) {
+        verificarEstadoBloqueo();
+      } else {
+        verificarEstadoBloqueoLocal();
+      }
+    };
+
+    async function verificarEstadoBloqueo() {
+      try {
+        const bloqueado = await window.storage.get(BLOCKED_KEY);
+        if (bloqueado && bloqueado.value === "true") {
+          mostrarPantallaBloqueada();
+        } else {
+          const intentos = await window.storage.get(STORAGE_KEY);
+          if (intentos) {
+            actualizarMensajeIntentos(parseInt(intentos.value));
+          }
+        }
+      } catch (e) {
+        verificarEstadoBloqueoLocal();
+      }
+    }
+
+    function verificarEstadoBloqueoLocal() {
+      const bloqueado = localStorage.getItem(BLOCKED_KEY);
+      if (bloqueado === "true") {
+        mostrarPantallaBloqueada();
+      } else {
+        const intentos = localStorage.getItem(STORAGE_KEY);
+        if (intentos) {
+          actualizarMensajeIntentos(parseInt(intentos));
+        }
+      }
+    }
+
+    async function verificarPassword() {
+      const input = document.getElementById("passwordInput");
+      const password = input.value;
+
+      if (!password) {
+        mostrarError("Por favor ingresa una contraseña");
+        return;
+      }
+
+      if (password === PASSWORD_CORRECTA) {
+
+        if (window.storage) {
+          try {
+            await window.storage.delete(STORAGE_KEY);
+            await window.storage.delete(BLOCKED_KEY);
+          } catch (e) {
+            localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(BLOCKED_KEY);
+          }
+        } else {
+          localStorage.removeItem(STORAGE_KEY);
+          localStorage.removeItem(BLOCKED_KEY);
+        }
+        mostrarCarta();
+      } else {
+        
+        await registrarIntentoFallido();
+      }
+    }
+
+    async function registrarIntentoFallido() {
+      let intentos = 0;
+      
+      if (window.storage) {
+        try {
+          const resultado = await window.storage.get(STORAGE_KEY);
+          intentos = resultado ? parseInt(resultado.value) : 0;
+        } catch (e) {
+          intentos = parseInt(localStorage.getItem(STORAGE_KEY) || "0");
+        }
+      } else {
+        intentos = parseInt(localStorage.getItem(STORAGE_KEY) || "0");
+      }
+
+      intentos++;
+
+      if (intentos >= MAX_INTENTOS) {
+        // Bloquear la cuenta
+        if (window.storage) {
+          try {
+            await window.storage.set(BLOCKED_KEY, "true");
+            await window.storage.set(STORAGE_KEY, intentos.toString());
+          } catch (e) {
+            localStorage.setItem(BLOCKED_KEY, "true");
+            localStorage.setItem(STORAGE_KEY, intentos.toString());
+          }
+        } else {
+          localStorage.setItem(BLOCKED_KEY, "true");
+          localStorage.setItem(STORAGE_KEY, intentos.toString());
+        }
+        mostrarPantallaBloqueada();
+      } else {
+        // Guardar intentos
+        if (window.storage) {
+          try {
+            await window.storage.set(STORAGE_KEY, intentos.toString());
+          } catch (e) {
+            localStorage.setItem(STORAGE_KEY, intentos.toString());
+          }
+        } else {
+          localStorage.setItem(STORAGE_KEY, intentos.toString());
+        }
+        mostrarError("Contraseña incorrecta");
+        actualizarMensajeIntentos(intentos);
+      }
+
+      document.getElementById("passwordInput").value = "";
+    }
+
+    function actualizarMensajeIntentos(intentos) {
+      const restantes = MAX_INTENTOS - intentos;
+      const mensaje = document.getElementById("attemptsLeft");
+      mensaje.textContent = `Intentos restantes: ${restantes}`;
+      mensaje.classList.remove("hidden");
+    }
+
+    function mostrarError(texto) {
+      const errorMsg = document.getElementById("errorMessage");
+      errorMsg.textContent = texto;
+      errorMsg.classList.remove("hidden");
+      
+      setTimeout(() => {
+        errorMsg.classList.add("hidden");
+      }, 3000);
+    }
+
+    function mostrarPantallaBloqueada() {
+      const loginContainer = document.getElementById("loginContainer");
+      loginContainer.innerHTML = `
+        <h2>Acceso Bloqueado</h2>
+        <p class="blocked-message">
+          Has excedido el número máximo de intentos permitidos.<br><br>
+          El acceso a esta carta ha sido bloqueado de forma permanente.<br><br>
+          Por favor, contacta con la persona que te compartió este enlace.
+        </p>
+      `;
+    }
+
+    function mostrarCarta() {
+      document.getElementById("loginContainer").classList.add("hidden");
+      document.getElementById("cartaContainer").classList.remove("hidden");
+    }
+
+    // Permitir enviar con Enter
+    document.getElementById("passwordInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        verificarPassword();
+      }
+    });
+  </script>
+</body>
+</html>
