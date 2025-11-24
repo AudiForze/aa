@@ -194,23 +194,23 @@
     <h1>Chichitos preciosos</h1>
 
     <p>
-      Me siento muy agradecido de tener una mujer tan maravillosa como tu...
+      Me siento muy agradecido de tener una mujer tan maravillosa como tu, de tenerte al lado y poder mirarte y decirte que te amo o quizás no decirlo porque aveces también me puede dar penita pero siempre lo pienso. 
     </p>
 
     <p>
-      Mi niña preciosa y enojona...
+      Mi niña preciosa y enojona, quiero expresarte lo tremendamente enamorado que estoy, y lo feliz y agradecido que hace sentir el saber que al recordar todos los momentos malos, todavía estamos juntos. Me haces ser el hombre mas feliz del mundo aunque aveces tienes tus pequeñititito dramotes yo estoy feliz de tenerte y quiero y se que puedo amarte para toda la vida sin que falte día y en cielo estoy seguro que serás lo primero que le preguntare a Dios.
     </p>
 
     <p>
-      Se que son pocos meses...
+      Se que son pocos meses que llevamos en comparación a los años que duraremos pero ya para mi son suficientes para estar seguro de que quiero vivir el resto de mi vida amándote, compartiendo cada día y cada noche contigo, que quiero llegar a casa y verte a ti jugando con nuestro hijos y que quiero que sea contigo con quien pueda subir al altar, casarme y tener una familia. 
     </p>
 
     <p>
-      Te has convertido en un hogar...
+      Te amo de mil formas diferentes y te he amado en todo y cada uno de los momentos en los que hemos estados juntos. Te has convertido en algo que creí imposible de encontrar, te has convertido en un hogar, en ti encontré un lugar seguro, un casa, un hogar mas allá del internet y de los códigos, en un hogar en el que puedo ser yo, puede ser el niño que se me prohibió ser y puedo ser libre sin miedo a ser juzgado o condicionado.
     </p>
 
     <p>
-      Se siente muy bonito amarte tanto...
+      Se siente muy bonito amarte tanto, es un sentimiento como raro pero más no pasajero, que se repite todos los días y cada vez es más intenso porque cada vez te amo más
     </p>
 
     <button class="boton-terminar" onclick="mostrarCarrusel()">He terminado de leer</button>
@@ -242,7 +242,7 @@
         </div>
 
       </div>
-      <button class="cerrar-modal" onclick="cerrarCarrusel()">Cerrar</button>
+      <button class="cerrar-modal" onclick="cerrarCarrusel()">Espera 5s y despues de las fotos cierra</button>
     </div>
   </div>
 
@@ -252,11 +252,10 @@
   <script>
     let indiceActual = 0;
     let intervalo;
-    const totalElementos = 5; // Solo los 5 videos
+    const totalElementos = 5; // ahora solo videos
 
     function mostrarCarrusel() {
-      const overlay = document.getElementById('overlay');
-      overlay.classList.add('active');
+      document.getElementById('overlay').classList.add('active');
       iniciarCarrusel();
     }
 
@@ -272,9 +271,7 @@
         mensaje.classList.add('active');
       }, 150);
 
-      setTimeout(() => {
-        mensaje.classList.remove('active');
-      }, 2500);
+      setTimeout(() => mensaje.classList.remove('active'), 2500);
 
       setTimeout(() => {
         overlay.classList.remove('active');
